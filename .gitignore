@@ -3,6 +3,7 @@
 code_backup
 check_model.py
 japanese-neon.png
+app.py
 
 __pycache__/
 *.pyc
