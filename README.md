@@ -18,3 +18,4 @@ This project was created as part of my learning journey in Python.
 - Add conversation memory (persistent chat history)
 - Add streaming responses for real-time text flow
 - Improve prompt formatting
+- Add Flask web interface for browser-based UI
