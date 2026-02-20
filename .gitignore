@@ -4,6 +4,8 @@ code_backup
 check_model.py
 japanese-neon.png
 app.py
+chat_memory.db
+*.db
 
 __pycache__/
 *.pyc

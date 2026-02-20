@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import PhotoImage
-from chatbot import get_response
+from chatbot import get_response, load_recent_messages
 
 
 class ChatApp(tk.Tk):
@@ -61,6 +61,7 @@ class ChatApp(tk.Tk):
 
         self.chat_panel_id = self.canvas.create_window(0, 0, window=self.chat_panel)
         self.canvas.bind("<Configure>", self.center_widgets)
+        self.load_chat_history()
 
     def center_widgets(self, event=None):
         width = self.canvas.winfo_width()
@@ -78,6 +79,18 @@ class ChatApp(tk.Tk):
     def display_output(self, text, tag):
         self.output_section.config(state="normal")
         self.output_section.insert(tk.END, text, tag)
+        self.output_section.config(state="disabled")
+        self.output_section.see(tk.END)
+
+    def load_chat_history(self):
+        history = load_recent_messages("default_user", limit=100)
+        self.output_section.config(state="normal")
+
+        for role, content in history:
+            if role == "user":
+                self.output_section.insert(tk.END, f"You: {content}\n", "user")
+            else:
+                self.output_section.insert(tk.END, f"Bot: {content}\n\n", "bot")
         self.output_section.config(state="disabled")
         self.output_section.see(tk.END)
 
